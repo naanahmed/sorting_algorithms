@@ -1,5 +1,12 @@
 #include "sort.h"
 
+/**
+  * quick_sort - ...
+  * @array: ...
+  * @size: ...
+  *
+  * Return: Void!
+  */
 void quick_sort(int *array, size_t size)
 {
 	if (!array || size < 2)
@@ -8,9 +15,19 @@ void quick_sort(int *array, size_t size)
 	quick_sort_rec(array, 0, size - 1, size);
 }
 
+/**
+  * quick_sort_rec - ...
+  * @array: ...
+  * @lower: ...
+  * @higher: ...
+  * @size: ...
+  *
+  * Return: Void!
+  */
 void quick_sort_rec(int *array, int lower, int higher, size_t size)
 {
 	int l_p = 0;
+
 	if (lower < higher)
 	{
 		l_p = lomuto_partition(array, lower, higher, size);
@@ -19,11 +36,21 @@ void quick_sort_rec(int *array, int lower, int higher, size_t size)
 	}
 }
 
+/**
+  * @array: ...
+  * @lower: ...
+  * @higher: ...
+  * @size: ...
+  *
+  * Return: Void!
+  */
 int lomuto_partition(int *array, int lower, int higher, size_t size)
 {
 	int i = 0, j = 0, pivot = 0, aux = 0;
+
 	pivot = array[higher];
 	i = lower;
+
 	for (j = lower; j < higher; ++j)
 	{
 		if (array[j] < pivot)
@@ -38,10 +65,13 @@ int lomuto_partition(int *array, int lower, int higher, size_t size)
 			++i;
 		}
 	}
+
 	aux = array[i];
 	array[i] = array[higher];
 	array[higher] = aux;
+
 	if (aux != array[i])
 		print_array(array, size);
+
 	return (i);
 }
